@@ -108,7 +108,8 @@ class Catalogo:
 
     def listarPaqTuris(self):
                     
-                    # Muestra en pantalla un listado de los destinos existentes.Recorremos la lista. 
+    
+    # Muestra en pantalla un listado de los destinos existentes.Recorremos la lista. 
                     
                     print("-"*50)
                     for paqTuris in self.destinos:
@@ -147,7 +148,8 @@ class Catalogo:
                             EJEMPLOS DE USO DE MÉTODOS
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"""
-catalogo = Catalogo()
+
+"""catalogo = Catalogo()
 
                     
             # Agregamos paquetes turísticos a la lista
@@ -175,7 +177,7 @@ catalogo.listarPaqTuris()
 print()
 catalogo.eliminarPaqTuris(1)
 print()
-catalogo.listarPaqTuris()
+catalogo.listarPaqTuris()"""
 
 
 
