@@ -1,147 +1,143 @@
 # Pasamos de funciones a OBJETOS
-# ----------------------------------------------------------------
-#Definimos una clase
-#----------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
+# Definimos una clase
+#-----------------------------------------------------------------------------------------
 
 class Catalogo:
 
     #Definimos una lista para almacenar los paquetes turísticos.
-    #Es una lista de paquetes turísticos(destinos)
+    #Es una lista de paquetes turísticos.
     destinos = []
-    #----------------------------------------------------------------------------------
-    #Método para agregar un paquete turístico.
-    #----------------------------------------------------------------------------------
+    #------------------------------------------------------------------------------------
+    # Método para agregar un paquete turístico.
+    #------------------------------------------------------------------------------------
 
     def agregarPaqTuris(self,codigo,descripcion,cantidad, precio, imagen,estadia,fecha):
 
-                    """
-                    Parámetros:
-                    -código: int, código numérico del paquete turístico.
-                    -descripción: str, descripción del destino.
-                    -cantidad:int,cantidad de paquetes turísticos disponibles.
-                    -precio: float, precio de venta.
-                    -imagen: str, nombre de la imagen(destino).
-                    -estadía: str, duración de estadía.
-                    -fecha : str, fechas de ida y vuelta.
+         """
+         Parámetros:
+         -código: int, código numérico del paquete turístico.
+         -descripción: str, descripción del destino.
+         -cantidad:int,cantidad de paquetes turísticos disponibles.
+         -precio: float, precio de venta.
+         -imagen: str, nombre de la imagen(destino).
+         -estadía: str, duración de estadía.
+         -fecha : str, fechas de ida y vuelta.
+          Retorna:
+         -bool: True si se agregó el paquete t.,False si ya existe un paquete t. con el mismo código.
+         """
+        #Verificamos si ya existe un paquete/destino con el mismo código
 
-                    Retorna:
-                    -bool: True si se agregó el paquete turístico,False si ya existe un destino con el mismo código.
-                    """
-                    #Verificamos si ya existe un paquete/ destino con el mismo código
-
-                    if self.consultarPaqTuris(codigo):
-                      print ("Paquete turístico existente.")
-                      return False # ya existe un destino con el mismo código.
+         if self.consultarPaqTuris(codigo):
+           print ("Paquete turístico existente.")
+           return False # ya existe un destino con el mismo código.
                     
-                    else:
-                        #Creamos un diccionario con los datos del destino
-
-                     nuevoPaqTuris = {
-                        "codigo": codigo,
-                        "descripcion": descripcion,
-                        "cantidad":cantidad,
-                        "precio": precio,
-                        "imagen": imagen,
-                        "estadia": estadia,
-                        "fecha": fecha
+         else:
+         #Creamos un diccionario con los datos del paquete t.
+            nuevoPaqTuris = {
+            "codigo": codigo,
+            "descripcion": descripcion,
+            "cantidad":cantidad,
+            "precio": precio,
+            "imagen": imagen,
+            "estadia": estadia,
+            "fecha": fecha
                     }
                     
-                    #Agregamos el paquete turístico al array (destinos)
-                    self.destinos.append(nuevoPaqTuris)
-                    return True #El paquete se agregó exitosamente.
+         #Agregamos el paquete turístico al array (destinos)
+            self.destinos.append(nuevoPaqTuris)
+            return True #El paquete se agregó exitosamente.
 
-    #----------------------------------------------------------------------------------
+    #------------------------------------------------------------------------------------
     # Método para consultar si un paquete existe en el arreglo, a partir de su código
-    #----------------------------------------------------------------------------------
+    #------------------------------------------------------------------------------------
 
     def consultarPaqTuris(self,codigo):
-                      """
-                     Consulta un paquete/destino a partir de su código y devuelve sus datos.
-                     Parámetros:
-                     -codigo: int, código numérico del producto.
-                      Retorna:
-                     -dict: datos del destino en forma del diccionario,o False si no se encontró el destino.
-                    """
-                 #recorremos la lista de destinos.
+       """
+        Consulta un paquete/destino a partir de su código y devuelve sus datos.
+        Parámetros:
+        -codigo: int, código numérico del producto.
+        Retorna:
+        -dict: datos del destino en forma del diccionario,o False si no se encontró el destino.
+        """
+         #Recorremos la lista de destinos.
 
-                      for paqTuris in self.destinos:
+       for paqTuris in self.destinos:
                             #Si el código existe
-                            if paqTuris["codigo"] == codigo:
-                             return paqTuris
+            if paqTuris["codigo"] == codigo:
+               return paqTuris
                     #Si el bucle finaliza sin encontrar el paquete turístico
-                      return False
+       return False
                         
-    #------------------------------------------------------------------------
+    #------------------------------------------------------------------------------------
     # Método para modificar datos de un paquete, a partir de su código
-    #------------------------------------------------------------------------
+    #------------------------------------------------------------------------------------
     def modificarPaqTuris(self,codigo,nuevaDescripcion,nuevaCantidad,nuevoPrecio,
                                             nuevaImagen,nuevaEstadia,nuevaFecha):
                             
-                    """
-                    Modifica los datos de un destino a partir de su código:
-                    Parámetros:
-                    -código: int, código numérico del paquete turístico.
-                    -nuevaDescripcion: str, nueva descripción del destino.
-                    -nuevaCantidad:int, nueva cantidad de paquetes turísticos.
-                    -nuevoPrecio: float,nuevo precio de venta.
-                    -nuevaImagen: str,nueva imagen del paquete(destino).
-                    -nuevaEstadia: str, nueva duración de estadía.
-                    -nuevaFecha : str,nueva fecha (de ida y vuelta).
-                    """ 
-                    
-                    #Recorremos la lista de destinos...
-                    for paqTuris in self.destinos:
-                        if paqTuris["codigo"] == codigo:
-                         paqTuris["descripcion"] = nuevaDescripcion
-                         paqTuris["cantidad"] = nuevaCantidad
-                         paqTuris["precio"] = nuevoPrecio
-                         paqTuris["imagen"] = nuevaImagen
-                         paqTuris["estadia"] = nuevaEstadia
-                         paqTuris["fecha"] = nuevaFecha
+        """
+          Modifica los datos de un destino a partir de su código:
+          Parámetros:
+          -código: int, código numérico del paquete turístico.
+          -nuevaDescripcion: str, nueva descripción del destino.
+          -nuevaCantidad:int, nueva cantidad de paquetes turísticos.
+          -nuevoPrecio: float,nuevo precio de venta.
+          -nuevaImagen: str,nueva imagen del paquete(destino).
+          -nuevaEstadia: str, nueva duración de estadía.
+          -nuevaFecha : str,nueva fecha (de ida y vuelta).
+        """           
+         #Recorremos la lista de destinos...
+        for paqTuris in self.destinos:
+            if paqTuris["codigo"] == codigo:
+                 paqTuris["descripcion"] = nuevaDescripcion
+                 paqTuris["cantidad"] = nuevaCantidad
+                 paqTuris["precio"] = nuevoPrecio
+                 paqTuris["imagen"] = nuevaImagen
+                 paqTuris["estadia"] = nuevaEstadia
+                 paqTuris["fecha"] = nuevaFecha
 
-                         return True
+                 return True
                     #Si llegamos hasta aquí, el paquete turístico no existe
-                    return False
-    #-------------------------------------------------------------------
+        return False
+    #------------------------------------------------------------------------------------------
     # Método para obtener un listado de los paquetes en pantalla
-    #-------------------------------------------------------------------
+    #------------------------------------------------------------------------------------------
 
     def listarPaqTuris(self):
                     
-    
     # Muestra en pantalla un listado de los destinos existentes.Recorremos la lista. 
                     
-                    print("-"*50)
-                    for paqTuris in self.destinos:
-                    #Mostramos los datos de cada destino
-                     print(f"Código..........:    {paqTuris["codigo"]}")
-                     print(f"Descripción.....:    {paqTuris["descripcion"]}")
-                     print(f"Cantidad........:    {paqTuris["cantidad"]}")
-                     print(f"Precio..........:    {paqTuris["precio"]}")
-                     print(f"Imagen..........:    {paqTuris["imagen"]}")
-                     print(f"Estadía.........:    {paqTuris["estadia"]}")
-                     print(f"Fecha...........:    {paqTuris["fecha"]}")
-                     print("-"*50)
+        print("-"*50)
+        for paqTuris in self.destinos:
+           #Mostramos los datos de cada destino
+            print(f"Código..........:    {paqTuris["codigo"]}")
+            print(f"Descripción.....:    {paqTuris["descripcion"]}")
+            print(f"Cantidad........:    {paqTuris["cantidad"]}")
+            print(f"Precio..........:    {paqTuris["precio"]}")
+            print(f"Imagen..........:    {paqTuris["imagen"]}")
+            print(f"Estadía.........:    {paqTuris["estadia"]}")
+            print(f"Fecha...........:    {paqTuris["fecha"]}")
+            print("-"*50)
 
-    #------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
     # Método para eliminar un paquete, a partir de su código.
-    #------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
     def eliminarPaqTuris(self,codigo):
-                        """
-                    Elimina un paquete a partir de su código:
-                    Parámetro:
-                    -código: int, código numérico del paquete turístico.
-                    """
-                    #Recorremos la lista de destinos/paquetes
+     """
+     Elimina un paquete a partir de su código:
+     Parámetro:
+     -código: int, código numérico del paquete turístico.
+     """
+         #Recorremos la lista de destinos/paquetes
 
-                        for paqTuris in self.destinos:
-                            if paqTuris["codigo"] == codigo:
-                             print (f"Paquete turístico {paqTuris["descripcion"]} eliminado.")
-                             self.destinos.remove(paqTuris)
+     for paqTuris in self.destinos:
+         if paqTuris["codigo"] == codigo:
+            print (f"Paquete turístico {paqTuris["descripcion"]} eliminado.")
+            self.destinos.remove(paqTuris)
                         
-                            return True
-                        #Si llegamos hasta aquí, el paquete no existe
-                        return False
+            return True
+        #Si llegamos hasta aquí, el paquete no existe
+     return False
                     
 """>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
