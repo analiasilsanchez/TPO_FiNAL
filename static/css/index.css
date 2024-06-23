@@ -1,0 +1,379 @@
+:root {
+    --color-primario: rgb(255, 72, 0);
+    --color-fondo-header: rgb(51, 51, 51);
+    --color-texto-header: rgb(255, 255, 255);
+    --color-amarillo-body: rgba(237, 201, 40, 0.876);
+    --color-naranja-body: rgba(237, 138, 40, 0.876);
+    --color-logo-sombra: rgba(219, 128, 25, 0.5);
+    /*color usado en formulario*/
+    --color-verde-4: rgb(5, 82, 48);
+    /*paleta de colores cards*/
+    --color-verde-4: rgb(58, 99, 81);
+    --color-naranja-1: rgb(228, 130, 87);
+    --color-beige-2: rgb(242, 237, 215);
+    --color-blanco-1: rgb(255, 245, 224);
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear
+      linear-gradient(
+        to right,
+        var(--color-amarillo-body),
+        var(--color-naranja-body),
+        var(--color-amarillo-body)
+      );
+  }
+  
+  main {
+    margin-top: -18px; /*ajuste de margen por espacio entre hero image y header*/
+  }
+  
+  /*HEADER 
+  ============================ */
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /*para dejar fijo el header mientras se scrollea*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 115px;
+    background-color: rgb(51, 51, 51);
+    color: #fff;
+    /* padding: 0.625rem 1.25rem; */
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    text-shadow: 2px 2px 4px rgba(243, 179, 4, 0.5); /* Aplica sombra al texto */
+    font-size: 18px;
+    font-weight: 300;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+    z-index: 1000; /*para posicionar adelante de todo el header*/
+    background-image: url(/static/imagenes/fondo-header.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center right 120px;
+  }
+  /* ----Capa semi-transparente (Overlay)--- */
+  .header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(25, 25, 25, 0.6);
+    z-index: -1;
+  }
+  /*al contenedor le agrego el mismo largo que el header para que el contenido de la página no sea tapado por el mismo con el position:fixed*/
+  .content {
+    height: 115px;
+  }
+  .logo {
+    margin: 0 1.25rem;
+  }
+  .logo img {
+    max-width: 8rem;
+    height: auto;
+  }
+ 
+  
+  /*Toggle Menu 
+  ============================ */
+  
+  .menu-btn {
+    display: none;
+    background: transparent;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 1.5rem;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    z-index: 1001;
+  }
+  
+  .menu-btn_bar {
+    width: 100%;
+    height: 3px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+    transform-origin: 1px;
+  }
+  
+  /*transformación del boton del menu hamburguesa en X*/
+  .menu-btn.active .menu-btn_bar:first-child {
+    transform: rotate(45deg) translate(1px);
+  }
+  .menu-btn.active .menu-btn_bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-btn.active .menu-btn_bar:last-child {
+    transform: rotate(-45deg);
+  }
+  
+  .nav-menu {
+    display: flex;
+    width: auto;
+    background: transparent;
+    margin-right: 1.5rem;
+  }
+  
+  /*Hero Image
+  ============================ */
+  #seccion-con-fondo {
+    background-image: url("../imgs/drink-8462392_1280.jpg");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    /* color tentativo, es conveniente usar variables de colores */
+    color: rgb(63, 63, 63);
+    height: 100vh;
+  }
+  
+  /*Informacion Extra en el index */
+  
+  #seccion-somos {
+    background-color: rgb(131, 133, 133);
+    background-size: auto;
+    background-position: center;
+    text-align: justify;
+    color: rgb(253, 251, 251);
+    height: auto;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  #seccion-somos h2 {
+    text-align: center;
+  }
+  
+  .texto-somos {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    color: white;
+    text-align: center;
+    margin: 10px; /* Añadir un margen de 10 píxeles en todos los lados */
+  }
+  
+  .titulo-subtit {
+    margin: 0;
+    padding: 6.15rem;
+    text-align: left;
+    font-size: larger;
+  }
+  
+  .icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+    
+  /*FOOTER  
+  =============================*/
+  footer {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 0.3rem;
+    background-color: rgb(51, 51, 51);
+    color: #f5f1f1;
+    padding: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .icons {
+    width: 2rem;
+    height: 2rem;
+    padding-inline: 0.1rem;
+    padding-bottom: 0.1rem;
+  }
+  
+  p {
+    font-size: 1rem;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinear elementos al inicio de cada columna */
+    text-align: left;
+  }
+  
+  dl dt {
+    margin-top: 25px; /* Ajusta el valor según sea necesario */
+  }
+  
+  dl dd {
+    margin-bottom: 5px; /* Ajusta el valor según sea necesario */
+  }
+  
+  
+  .seguinos {
+    margin: 20px 0;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(174, 154, 61, 0.79); /* Aplica sombra al texto */
+  }
+  
+  a:hover {
+    color: rgb(228, 130, 87); /* Color rojo al pasar el mouse sobre el enlace */
+  }
+  
+  .column {
+    flex: 1; /* Que cada columna ocupe el mismo espacio */
+    margin-right: 10px; /* Espacio entre columnas */
+  }
+  
+  .column:last-child {
+    margin-right: 0; /* Eliminar margen derecho de la última columna */
+  }
+  
+ 
+  
+  
+  /* Media queries para hacer el diseño responsive */
+  
+  /* Estilos para dispositivos móviles (celular) */
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      text-align: center;
+      flex-wrap: wrap;
+      background-image: none !important;
+      background-color: rgb(51, 51, 51);
+    }
+    .header::before {
+      background: none;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+  
+    nav a {
+      display: block;
+      margin: 0.1rem 0;
+      padding: 0.6rem 0;
+      height: 100%;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+  
+    nav a:hover {
+      background-color: rgba(44, 44, 44, 0.786);
+    }
+  
+    nav a:active {
+      transform: scale(1.2);
+    }
+  
+    /*toggle menu*/
+    .menu-btn {
+      display: flex;
+      position: absolute;
+      top: 15px;
+      right: 5px;
+    }
+    .nav-menu {
+      /* display: none; */
+      flex-direction: column;
+      /* align-items: center; */
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      position: absolute;
+      top: 115px;
+      transform: translateY(-100%);
+      transition: visibility 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .nav-menu.active {
+      /* display: flex; */
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  
+    .image {
+      flex: 1 1 100%;
+    }
+  
+    .column {
+      flex: 1 1 100%;
+    }
+  
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-content .column {
+      width: 100%;
+      margin: 0.5em 0;
+    }
+  }
+  
+  /* Estilos para tabletas */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    main {
+      margin-top: -18px; /*ajuste de margen por espacio entre hero image y header*/
+    }
+    .image {
+      flex: 1 1 calc(50% - 1em);
+    }
+  
+    .column {
+      flex: 1 1 45%;
+    }
+  
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-content .column {
+      width: 100%;
+      margin: 0.5em 0;
+    }
+  }
+  
+  /* Estilos para PC escritorio */
+  @media (min-width: 1025px) {
+    .image {
+      flex: 1 1 calc(20%);
+      padding: 10px;
+    }
+  
+    .column {
+      flex: 1 1 30%;
+    }
+  }
+  
