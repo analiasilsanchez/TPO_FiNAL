@@ -2,17 +2,33 @@
 import mysql.connector
 
 class Catalogo:
-
+    """ Esta clase proporciona métodos para administrar un
+    catálogo de paquetes turísticos almacenados
+      en una base de datos MySQL"""
+    
+    # Constructor de la clase
     def __init__(self, host, user, password, database):
+         """
+         Inicializa una instancia de Catálogo y crea una conexión a la base de datos.
 
-        self.conn = mysql.connector.connect(
+         Args:
+             host (str) : La dirección del servidor de la base de datos.
+             user (str) : El nombre de usuario para acceder a la base de datos.
+             password (str) : La contraseña del usuario.
+             database (str) : El nombre de la base de datos.
+         """
+         # Primero, establecemos una conexión sin especificar la base de datos
+         # self.conn es un atributo de la clase que representa una conexión activa a una base de datos.
+         self.conn = mysql.connector.connect(
           host=host,
           user=user,
           password=password,
           database=database
         )
-        self.cursor = self.conn.cursor(dictionary=True)
-        self.cursor.execute('''CREATE TABLE IF NOT EXISTS destinos (
+         # Un cursor permite interactuar con la base de datos de forma más directa.
+         # A través de este cursor se pueden ejecutar comandos SQL.
+         self.cursor = self.conn.cursor(dictionary=True)
+         self.cursor.execute('''CREATE TABLE IF NOT EXISTS destinos (
             codigo INT AUTO_INCREMENT PRIMARY KEY,
             descripcion VARCHAR(255) NOT NULL,
             cantidad INT NOT NULL,
@@ -21,21 +37,26 @@ class Catalogo:
             estadia VARCHAR (255)
             fecha VARCHAR (255))''')
 
-        self.conn.commit()
+         self.conn.commit()
 
     """Agregamos un nuevo paquete turístico a la base de datos, para ello necesitamos
       los parámetros que describen las características del paquete que agregamos."""
     def agregarPaqTuris(self, descripcion, cantidad, precio, imagen, estadia, fecha):
       sql = "INSERT INTO destinos (descripcion, cantidad, precio, imagen_url, estadia, fecha)VALUES (%s, %s, %s, %s, %s,%s)" 
-      valores = (descripcion, cantidad, precio, imagen,estadia,fecha)
+      """Los valores se pasan como parámetros separados a la consulta,serán tratados como datos
+        y no como parte del código SQL.Los marcadores de posición %s son reemplazados por los
+        valores reales de los parámetros cuando se ejecuta la consulta."""
+      
+      valores = (descripcion, cantidad, precio, imagen, estadia, fecha)
       self.cursor.execute(sql,valores) 
-      self.conn.commit()
-      return self.cursor.lastrowid
+      self.conn.commit() #Guardo
+      return self.cursor.lastrowid # Nos da el valor de la clave primaria generada automáticamente por la 
+    #base de datos para la fila recién insertada.
     
     # Consultamos un paquete t. a partir de su código.
     def consultarPaqTuris(self, codigo):
-       self.cursor.execute(f"SELECT * FROM productos WHERE codigo = {codigo}")
-       return self.cursor.fetchone()
+       self.cursor.execute(f"SELECT * FROM destinos WHERE codigo = {codigo}")
+       return self.cursor.fetchone() # devuelve un solo registro
     
     # Actualizamos los datos de un paquete específico en la base de datos a partir de su código.
     def modificarPaqTuris(self, codigo, nuevaDescripcion, nuevaCantidad, 
@@ -43,10 +64,13 @@ class Catalogo:
       sql = "UPDATE destinos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, estadia = %s, fecha = %s WHERE codigo = %s"
       valores = (nuevaDescripcion, nuevaCantidad, nuevoPrecio, nuevaImagen, nuevaEstadia, nuevaFecha, codigo)
       self.cursor.execute(sql, valores)
-      self.conn.commit()
+      self.conn.commit() #Guardo
       return self.cursor.rowcount > 0
+      """rowcount() se usa para comprobar si una operación SQL afectó a alguna fila en la base de datos.
+         Es una comparación que verifica si este número es mayor que cero, indica que al menos una fila
+         fue afectada."""
     
-    #Mostramos los datos de un paquete a partir de su código.
+    # Mostramos los datos de un paquete a partir de su código.
     def mostrarPaqTuris(self, codigo): 
         paqTuris = self.consultarPaqTuris(codigo)
         if paqTuris:
@@ -60,12 +84,12 @@ class Catalogo:
             print(f"Fecha......: {paqTuris['fecha']}")
             print("-" * 40)
         else:
-            print("Producto no encontrado.")
+            print("Paquete turístico no encontrado.")
 
     #Mostramos todos los paquetes turísticos de la base de datos.
     def listarDestinos(self):
          self.cursor.execute("SELECT * FROM destinos")
-         destinos = self.cursor.fetchall()
+         destinos = self.cursor.fetchall() # Devuelve todas las filas en una consulta SQL
          return destinos
     
     # Eliminamos un paquete de la tabla a partir de su código.
@@ -94,12 +118,12 @@ catalogo = Catalogo(host='localhost', user='root', password='', database='viajes
     else:
           print(f'Paquete turístico {codPaqTuris} no encontrado.')"""
 
-#Modificamos un paquete y lo mostramos
+# Modificamos un paquete y lo mostramos
 """catalogo.mostrarPaqTuris(1)
    catalogo.modificarPaqTuris(1,"Córdoba,Argentina",40,5000000,"Córdoba.png","6 noches","15/07/24 al 20/07/24") # modificamos precio, estadia y fecha
    catalogo.mostrarPaqTuris(1)"""
 
-#Listar paquetes turísticos (Todos)
+# Listar paquetes turísticos (Todos)
 #destinos = catalogo.listarDestinos()
 #for paqTuris in destinos:
       #print (paqTuris)
