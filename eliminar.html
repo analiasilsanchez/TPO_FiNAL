@@ -3,7 +3,7 @@
 
 <head>
    
-    <title>Proyecto Final - CRUD Viajes</title>
+    <title>Proyecto Final - CatorceViajes CRUD </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/css/estilos.css">
@@ -19,7 +19,7 @@
         <div class="logo">
             <img src="/static/imagenes/logonuevo_1-sin-fondo.png" alt="logo-catorce">
         </div>
-        <a href="index.html">Menu principal</a>
+        <a href="index.html"> Menú principal</a>
     </header>
        
     <div class="content"><!--contenedor del espacio del header--></div>
@@ -29,14 +29,16 @@
 <br>
 <h1>Eliminar Paquetes Turísticos</h1><br>
 
-    <table id="productos-table"> <!-- Se crea una tabla para mostrar los productos. -->
-        <thead> <!--Encabezado de la tabla con columnas para código, descripción, cantidad, precio y acciones.-->
+    <table id="destinos-table"> <!-- Se crea una tabla para mostrar los paquetes. -->
+        <thead> <!--Encabezado de la tabla destinos con columnas para código, descripción, cantidad, precio, estadia y fecha.-->
             <tr>
                 <th>Código</th>
                 <th>Descripción</th>
                 <th>Cantidad</th>
                 <th align="right">Precio</th>
-                <th>Acciones</th>
+                <th>Estadía</th>
+                <th>fecha</th>
+
             </tr>
         </thead>
         <tbody>
@@ -44,7 +46,7 @@
     </table><br>
 
     <div class="contenedor-centrado">
-        <a href="index.html">Menu principal</a>
+        <a href="index.html">Menú principal</a>
     </div>
 
     <script>
@@ -54,44 +56,47 @@
         //const URL = "https://USUARIO.pythonanywhere.com/"
         
         // Obtiene el contenido del inventario
-        function obtenerProductos() {
-            fetch(URL + 'productos') // Realiza una solicitud GET al servidor y obtener la lista de productos.
+        function obtenerDestinos() {
+            fetch(URL + 'destinos') // Realiza una solicitud GET al servidor para obtener la lista de paquetes.
                 .then(response => {
                     // Si es exitosa (response.ok), convierte los datos de la respuesta de formato JSON a un objeto JavaScript.
                     if (response.ok) { return response.json(); }
                 })
-                // Asigna los datos de los productos obtenidos a la propiedad productos del estado.
+                // Asigna los datos de los paquetes obtenidos a la propiedad paquetes del estado.
                 .then(data => {
-                    const productosTable = document.getElementById('productos-table').getElementsByTagName('tbody')[0];
-                    productosTable.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
-                    data.forEach(producto => {
-                        const row = productosTable.insertRow();
+                    const destinosTable =                   
+        document.getElementById('destinos-table').getElementsByTagName('tbody')[0];
+                    destinosTable.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
+                    data.forEach(paqturis => {
+                        const row = destinosTable.insertRow();
                         row.innerHTML = `
-                            <td>${producto.codigo}</td>
-                            <td>${producto.descripcion}</td>
-                            <td>${producto.cantidad}</td>
-                            <td align="right">${producto.precio}</td>
-                            <td><button onclick="eliminarProducto('${producto.codigo}')">Eliminar</button></td>
+                            <td>${paqTuris.codigo}</td>
+                            <td>${paqturis.descripcion}</td>
+                            <td>${paqTuris.cantidad}</td>
+                            <td align="right">${paqTuris.precio}</td>
+                            <td>${paqTuris.estadia}</td>
+                            <td><button 
+        onclick="eliminarPaqTuris('${paqTuris.codigo}')">Eliminar</button></td>
                         `;
                     });
                 })
                 // Captura y maneja errores, mostrando una alerta en caso de error al obtener los productos.
                 .catch(error => {
                     console.log('Error:', error);
-                    alert('Error al obtener los productos.');
+                    alert('Error al obtener los destinos/paquetes.');
                 });
         }
 
         // Se utiliza para eliminar un producto.
-        function eliminarProducto(codigo) {
+        function eliminarPaqturis(codigo) {
             // Se muestra un diálogo de confirmación. Si el usuario confirma, se realiza una solicitud DELETE al servidor a través de fetch(URL + 'productos/${codigo}', {method: 'DELETE' }).
-            if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-                fetch(URL + `productos/${codigo}`, { method: 'DELETE' })
+            if (confirm('¿Estás seguro de que quieres eliminar este paquete?')) {
+                fetch(URL + `destinos/${codigo}`, { method: 'DELETE' })
                     .then(response => {
                         if (response.ok) {
                             // Si es exitosa (response.ok), elimina el producto y da mensaje de ok.
-                            obtenerProductos(); // Vuelve a obtener la lista de productos para actualizar la tabla.
-                            alert('Producto eliminado correctamente.');
+                            obtenerDestinos(); // Vuelve a obtener la lista de paquetes para actualizar la tabla.
+                            alert('Paquete turístico eliminado correctamente.');
                         }
                     })
                     // En caso de error, mostramos una alerta con un mensaje de error.
@@ -101,8 +106,8 @@
             }
         }
 
-        // Cuando la página se carga, llama a obtenerProductos para cargar la lista de productos.
-        document.addEventListener('DOMContentLoaded', obtenerProductos);
+        // Cuando la página se carga, llama a obtenerDestinos para cargar la lista de paquetes turísticos.
+        document.addEventListener('DOMContentLoaded', obtenerDestinos);
     </script>
 
 
