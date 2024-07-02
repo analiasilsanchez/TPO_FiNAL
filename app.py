@@ -1,6 +1,6 @@
 # ETAPA 4: DESARROLLAR UNA API PARA NUESTRO CRUD
-#Instalar con pip install : Flask, flask-cors, mysql-connector-python, Werkseug
-from flask import Flask, request, jsonify
+#Instalar con pip install : Flask, flask-cors, mysql-connector-python, Werkzeug
+from flask import Flask, request, jsonify, render_template
 from flask import request
 from flask_cors import CORS
 import mysql.connector
@@ -25,6 +25,7 @@ class Catalogo:
       user=user,
       password=password
     )
+# creación del cursor
    self.cursor = self.conn.cursor()
 # Intentamos seleccionar la base de datos
    try:  
@@ -36,7 +37,6 @@ class Catalogo:
         self.conn.database = database
     else:
         raise err
-
 # Una vez que la base de datos está establecida, creamos la tabla si no existe
    self.cursor.execute('''CREATE TABLE IF NOT EXISTS destinos (
       codigo INT AUTO_INCREMENT PRIMARY KEY,
