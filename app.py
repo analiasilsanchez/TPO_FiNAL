@@ -1,5 +1,5 @@
-# ETAPA 4: DESARROLLAR UNA API PARA NUESTRO CRUD
-#Instalar con pip install : Flask, flask-cors, mysql-connector-python, Werkzeug
+#--------------------------------------------------------------------
+# Instalar con pip install Flask
 from flask import Flask, request, jsonify, render_template
 from flask import request
 
@@ -24,46 +24,52 @@ CORS(app)  # Esto habilitará CORS para todas las rutas
 
 #--------------------------------------------------------------------
 class Catalogo:
-#---------------------------------------------------------------
-# Constructor de la clase
- def __init__(self, host, user, password, database):
+    #----------------------------------------------------------------
+    # Constructor de la clase
+    def __init__(self, host, user, password, database):
+        # Primero, establecemos una conexión sin especificar la base de datos
+        self.conn = mysql.connector.connect(
+            host=host,
+            user=user,
+            password=password
+        )
+        self.cursor = self.conn.cursor()
 
-# Primero, establecemos una conexión sin especificar la base de  datos
-   self.conn = mysql.connector.connect(
-      host=host,
-      user=user,
-      password=password
-    )
-# creación del cursor
-   self.cursor = self.conn.cursor()
-# Intentamos seleccionar la base de datos
-   try:  
-       self.cursor.execute(f"USE {database}")
-   except mysql.connector.Error as err:
-# Si la base de datos no existe, la creamos
-    if err.errno == mysql.connector.errorcode.ER_BAD_DB_ERROR:
-        self.cursor.execute(f"CREATE DATABASE {database}")
-        self.conn.database = database
-    else:
-        raise err
-# Una vez que la base de datos está establecida, creamos la tabla si no existe
-   self.cursor.execute('''CREATE TABLE IF NOT EXISTS destinos (
-      codigo INT AUTO_INCREMENT PRIMARY KEY,
-      descripcion VARCHAR(255) NOT NULL,
-      cantidad INT NOT NULL,
-      precio DECIMAL(10, 2) NOT NULL,
-      imagen_url VARCHAR(255),
-      estadia VARCHAR(255)
-      fecha VARCHAR(255))''')
-   self.conn.commit()
-# Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
-   self.cursor.close()
-   self.cursor = self.conn.cursor(dictionary=True)
+        # Intentamos seleccionar la base de datos
+        try:
+            self.cursor.execute(f"USE {database}")
+        except mysql.connector.Error as err:
+            # Si la base de datos no existe, la creamos
+            if err.errno == mysql.connector.errorcode.ER_BAD_DB_ERROR:
+                self.cursor.execute(f"CREATE DATABASE {database}")
+                self.conn.database = database
+            else:
+                raise err
 
-#-----------------------------------------------------------------------------------------------
- def agregarPaqturis(self, descripcion, cantidad, precio, imagen, estadia, fecha):
-               
-        sql = "INSERT INTO destinos (descripcion, cantidad, precio, imagen_url, estadia, fecha) VALUES (%s, %s, %s, %s, %s, %s)"
+        # Una vez que la base de datos está establecida, creamos la tabla si no existe
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS destinos (
+            codigo INT AUTO_INCREMENT PRIMARY KEY,
+            descripcion VARCHAR(255) NOT NULL,
+            cantidad INT NOT NULL,
+            precio DECIMAL(10, 2) NOT NULL,
+            imagen_url VARCHAR(255), 
+            estadia VARCHAR (255),
+            fecha VARCHAR (255))''')
+        self.conn.commit()
+
+        # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
+        self.cursor.close()
+        self.cursor = self.conn.cursor(dictionary=True)
+        
+    #----------------------------------------------------------------
+    """Agregamos un nuevo paquete turístico a la base de datos, para ello necesitamos
+    los parámetros que describen las características del paquete que agregamos."""
+    def agregarPaqTuris(self, descripcion, cantidad, precio, imagen, estadia, fecha):
+        sql = "INSERT INTO destinos (descripcion, cantidad, precio, imagen_url, estadia, fecha)VALUES (%s, %s, %s, %s, %s,%s)" 
+        """Los valores se pasan como parámetros separados a la consulta,serán tratados como datos
+        y no como parte del código SQL.Los marcadores de posición %s son reemplazados por los
+        valores reales de los parámetros cuando se ejecuta la consulta."""
+
         valores = (descripcion, cantidad, precio, imagen, estadia, fecha)
         self.cursor.execute(sql,valores) 
         self.conn.commit() #Guardo
@@ -124,7 +130,7 @@ class Catalogo:
 # Programa Principal
 #--------------------------------------------------------------------
 # Crear una instancia de la clase Catalogo
-catalogo = Catalogo(host='localhost', user='root', password='root', database='Viajes')
+catalogo = Catalogo(host='localhost', user='root', password='', database='miapp')
 #catalogo = Catalogo(host='USUARIO.mysql.pythonanywhere-services.com', user='USUARIO', password='CLAVE', database='USUARIO$miapp')
 
 
@@ -245,7 +251,7 @@ def modificarPaqTuris(codigo):
         return jsonify({"mensaje": "Paquete turístico modificado"}), 200
     else:
         #Si el paquete no se encuentra (por ejemplo, si no hay ningún paquete con el código dado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado).
-        return jsonify({"mensaje": "Paquete turístico no encontrado"}), 404
+        return jsonify({"mensaje": "Paquete turístico no encontrado"}), 403
 
 
 
