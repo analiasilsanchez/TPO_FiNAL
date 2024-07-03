@@ -35,9 +35,11 @@
                 <th>Código</th>
                 <th>Descripción</th>
                 <th>Cantidad</th>
-                <th align="right">Precio</th>
-                <th>Estadía</th>
+                <th>Estadia</th>
                 <th>fecha</th>
+                <th align="right">Precio</th>
+                <th> Acciones</th>
+                
 
             </tr>
         </thead>
@@ -67,14 +69,16 @@
                     const destinosTable =                   
         document.getElementById('destinos-table').getElementsByTagName('tbody')[0];
                     destinosTable.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
-                    data.forEach(paqturis => {
+                    data.forEach(paqTuris => {
                         const row = destinosTable.insertRow();
                         row.innerHTML = `
                             <td>${paqTuris.codigo}</td>
                             <td>${paqturis.descripcion}</td>
                             <td>${paqTuris.cantidad}</td>
-                            <td align="right">${paqTuris.precio}</td>
                             <td>${paqTuris.estadia}</td>
+                            <td>${paqTuris.fecha}</td>
+                            <td align="right">${paqTuris.precio}</td>
+                            
                             <td><button 
         onclick="eliminarPaqTuris('${paqTuris.codigo}')">Eliminar</button></td>
                         `;
@@ -94,7 +98,7 @@
                 fetch(URL + `destinos/${codigo}`, { method: 'DELETE' })
                     .then(response => {
                         if (response.ok) {
-                            // Si es exitosa (response.ok), elimina el producto y da mensaje de ok.
+                            // Si es exitosa (response.ok), elimina el paquete y da mensaje de ok.
                             obtenerDestinos(); // Vuelve a obtener la lista de paquetes para actualizar la tabla.
                             alert('Paquete turístico eliminado correctamente.');
                         }
