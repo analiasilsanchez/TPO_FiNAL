@@ -2,8 +2,10 @@
 
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
-    font-size:larger;
-    color: #1f07fc;
+    font-size:x-large;
+    color: rgb(5, 103, 60);
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 600;
 }
 
 
@@ -20,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     width: 100vw;
     height: 100px;
-    background-color: #5f4494;
+    background-color: rgb(3, 106, 61);
     display: flex;
     justify-content: flex-start;
     align-items: center; 
@@ -35,8 +37,8 @@ table {
     max-width: 90%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #292829;
-    border: 1px solid lightslategray;
+    background-color:  rgb(14, 105, 66);
+    border: 1px solid rgb(94, 102, 110);
     border-radius: 5px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
@@ -52,14 +54,14 @@ textarea {
     width: 90%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #cccccc;
+    border: 1px solid #ebe6e6;
     border-radius: 5px;
 }
 
 button {
     padding: 8px;
     margin:4px;
-    background-color: #007bff;
+    background-color:  rgb(11, 105, 64);
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -67,15 +69,15 @@ button {
 }
 
 button:hover {
-    background-color: #1f2020;
+    background-color:  rgb(17, 243, 145);
 }
 
 
 a {
     padding: 8px;
     margin:4px;
-    background-color: #fdab13;
-    color: #1d1a39;
+    background-color: hsl(30, 90%, 72%);
+    color: #2b293e;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -85,7 +87,7 @@ a {
 }
 
 #area-botones {
-    background-color: #fafcfc;
+    background-color: #ebecec;
     text-align: center;
   }
 
@@ -93,15 +95,39 @@ form {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #292829;
-    border: 1px solid lightslategray;
+    background-color: #373337;
+    border: 1px solid rgb(163, 184, 207);
     border-radius: 5px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 10px 10px 20px rgba(40, 39, 39, 0.5);
 }
 
 label {
     color: #dde6be;
     text-align: center;
 }
+#formulario {
+    background-color: rgb(165, 184, 165); 
 
-  
+}
+label{
+    color:rgb(5, 55, 33);
+    font-weight: 900;
+
+}
+#datos{
+    color:#ffffff;
+
+}
+ #form-obtener-paqTuris{
+    background-color: rgb(165, 184, 165);  
+ }
+ #datos2{
+    color:#ffffff;
+ }
+#form-guardar-cambios{
+    background-color: rgb(165, 184, 165); 
+}
+#tablaDestinos{
+    background-color:rgb(165, 184, 165); 
+}
+ 

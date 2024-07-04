@@ -22,29 +22,29 @@
         <a href="index.html">Menú principal</a>
     </header>
        
-    <div class="content"><!--contenedor del espacio del header--></div>
-               
-
-
+    <div class="content"><!--contenedor del espacio del header--></div>            
+<br>
 <br>
 <h1>Listado de Paquetes Turísticos</h1><br>
-
+<br>
     <table> <!-- Se crea una tabla para mostrar los paquetes. -->
         <thead> <!--Encabezado de la tabla con columnas para código, descripción, cantidad, precio, imagen, estadia y precio.-->
-            <tr>
-                <th>Código</th>
+            <tr id="datos">
+                <th>Código</th> 
                 <th>Descripción</th>
                 <th>Cantidad</th>                
                 <th>Precio</th>
-                <th>Imagen</th>
                 <th>Estadía</th>
+                <th>Imagen</th>
                 <th>Fecha</th>
                 
             </tr>
         </thead>
         <tbody id="tablaDestinos"> </tbody>
     </table><br>
-
+    <br>
+    <br>
+    
     <div class="contenedor-centrado">
         <a href="index.html">Menú principal</a>
     </div>
@@ -81,7 +81,7 @@
                         '<td align="right">' + paqTuris.precio + '</td>' +
                         '<td align="right">' + paqTuris.estadia + '</td>' +
                         // Mostrar miniatura de la imagen
-                        '<td><img src=./static/imagenes/' + paqTuris.imagen_url +' alt="Imagen del paquete" style="width: 100px;"></td>' +
+                        '<td><img src=./static/imagenes/' + paqTuris.imagen_url +' alt="Img del paq." style="width: 80px;"></td>' +
                         '<td align="right">' + paqTuris.fecha + '</td>';
                         
                         //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
@@ -98,7 +98,8 @@
                 alert('Error al obtener los paquetes turísticos.');
             });
     </script>
-
+    <br>
+    <br>
     <footer>
         <div class="footer-bottom">
             <p>&copy; 2024 GRUPO14FS.Todos los derechos reservados.</p>

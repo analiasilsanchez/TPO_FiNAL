@@ -1,5 +1,5 @@
-# ETAPA 4: DESARROLLAR UNA API PARA NUESTRO CRUD
-#Instalar con pip install : Flask, flask-cors, mysql-connector-python, Werkzeug
+#ETAPA 4 PARTE II: DESARROLLAR UNA API PARA NUESTRO CRUD
+#Instalar con pip install : Flask, flask-cors, mysql-connector-python, Werkseug
 from flask import Flask, request, jsonify, render_template
 from flask import request
 from flask_cors import CORS
@@ -25,7 +25,6 @@ class Catalogo:
       user=user,
       password=password
     )
-# creación del cursor
    self.cursor = self.conn.cursor()
 # Intentamos seleccionar la base de datos
    try:  
@@ -37,22 +36,24 @@ class Catalogo:
         self.conn.database = database
     else:
         raise err
+
 # Una vez que la base de datos está establecida, creamos la tabla si no existe
-   self.cursor.execute('''CREATE TABLE IF NOT EXISTS destinos (
-      codigo INT AUTO_INCREMENT PRIMARY KEY,
-      descripcion VARCHAR(255) NOT NULL,
-      cantidad INT NOT NULL,
-      precio DECIMAL(10, 2) NOT NULL,
-      imagen_url VARCHAR(255),
-      estadia VARCHAR(255)
-      fecha VARCHAR(255))''')
+   self.cursor.execute('''
+        CREATE TABLE IF NOT EXISTS destinos (
+           codigo INT AUTO_INCREMENT PRIMARY KEY,
+           descripcion VARCHAR(255) NOT NULL,
+           cantidad INT NOT NULL,
+           precio DECIMAL(10, 2) NOT NULL,
+           imagen_url VARCHAR(255),
+           estadia VARCHAR(255),
+           fecha VARCHAR(255))''')
    self.conn.commit()
 # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
    self.cursor.close()
    self.cursor = self.conn.cursor(dictionary=True)
 
 #-----------------------------------------------------------------------------------------------
- def agregarPaqturis(self, descripcion, cantidad, precio, imagen, estadia, fecha):
+ def agregarPaqTuris(self, descripcion, cantidad, precio, imagen, estadia, fecha):
                
         sql = "INSERT INTO destinos (descripcion, cantidad, precio, imagen_url, estadia, fecha) VALUES (%s, %s, %s, %s, %s, %s)"
         valores = (descripcion, cantidad, precio, imagen, estadia, fecha)
@@ -63,7 +64,7 @@ class Catalogo:
 
     #----------------------------------------------------------------
  def consultarPaqTuris(self, codigo):
-        # Consultamos un paquete turístico a partir de su código, destinos es la tabla de la base de datos(viajes)
+        # Consultamos un paquete turístico a partir de su código, destinos es la tabla de la base de datos(turismo)
         self.cursor.execute(f"SELECT * FROM destinos WHERE codigo = {codigo}")
         return self.cursor.fetchone()
 
@@ -109,7 +110,7 @@ class Catalogo:
 # Cuerpo del programa
 #--------------------------------------------------------------------
 # Crear una instancia de la clase Catalogo
-catalogo = Catalogo(host='localhost', user='root', password='root', database='Viajes')
+catalogo = Catalogo(host='localhost', user='root', password='root', database='viajes')
 #catalogo = Catalogo(host='USUARIO.mysql.pythonanywhere-services.com', user='USUARIO', password='CLAVE', database='USUARIO$miapp')
 
 # Carpeta para guardar las imágenes.
@@ -281,9 +282,7 @@ if __name__ == "__main__":
 
 
 
-        
 
 
-        
-        
+
 
