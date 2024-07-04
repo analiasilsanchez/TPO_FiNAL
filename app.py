@@ -263,7 +263,7 @@ def modificarPaqTuris(codigo):
 #La función eliminarPaqTuris se asocia con esta URL y es llamada cuando se realiza una solicitud DELETE a /destinos/ seguido de un número (el código del paquete).
 def eliminarPaqTuris(codigo):
     # Busco el paquete en la base de datos
-    destino = catalogo.eliminarPaqTuris(codigo)
+    destino = catalogo.consultarPaqTuris(codigo)
     if destino: # Si el paquete existe, verifica si hay una imagen asociada en el servidor.
         imagen_vieja = destino["imagen_url"]
         # Armo la ruta a la imagen

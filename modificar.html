@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-   
+
     <title>Proyecto Final - CRUD Viajes</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./static/css/index.css">
     <link rel="icon" href="/static/imagenes/logonuevo_1.jpeg" type="image/png">
     <link rel="icon" href="/static/imagenes/logonuevo_1.jpeg" type="image/png">
-    
+
 </head>
 
 
@@ -21,13 +21,13 @@
         </div>
         <a href="index.html">Menú principal</a>
     </header>
-       
+
     <div class="content"><!--contenedor del espacio del header--></div>
-               
 
 
-<br>
-<h1>Modificar Paquetes Turísticos</h1><br>
+
+    <br>
+    <h1>Modificar Paquetes Turísticos</h1><br>
 
     <!-- Contenedor principal que será controlado por JavaScript. Este contenedor tendrá dos formularios. -->
     <div id="app">
@@ -62,7 +62,7 @@
                 <input type="file" id="nuevaImagen"><br>
                 <br>
                 <label for="estadiaModificar">Estadía:</label>
-                <input type="text" id="estadiaModificar" ><br>
+                <input type="text" id="estadiaModificar"><br>
                 <label for="fechaModificar">Fecha:</label>
                 <input type="text" id="fechaModificar" required><br>
 
@@ -90,7 +90,7 @@
         let imagenUrlTemp = null;
         let mostrarDatosPaqTuris = false;
 
-        document.getElementById('form-obtener-paqTuris').addEventListener('submit', obtenerPaqTuris);
+        document.getElementById('form-obtener-paquete').addEventListener('submit', obtenerPaqTuris);
         document.getElementById('form-guardar-cambios').addEventListener('submit', guardarCambios);
         document.getElementById('nuevaImagen').addEventListener('change', seleccionarImagen);
 
@@ -133,8 +133,8 @@
                 const imagenActual = document.getElementById('imagen-actual');
                 if (imagen_url && !imagenSeleccionada) { // Verifica si imagen_url no está vacía y no se ha seleccionado una imagen
 
-                    imagenActual.src = './static/imagenes/' + imagen_url;                    
-                    
+                    imagenActual.src = './static/imagenes/' + imagen_url;
+
                     //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
                     //imagenActual.src = 'https://www.pythonanywhere.com/user/USUARIO/files/home/USUARIO/mysite/static/imagenes/' + imagen_url;
 
@@ -235,7 +235,7 @@
             <p>Diseño web desarrollado por GRUPO14FS.</p>
         </div>
     </footer>
-    
+
     <script src="./js/toggle-menu.js"></script>
 
 </body>
