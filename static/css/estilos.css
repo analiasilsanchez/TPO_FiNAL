@@ -3,7 +3,7 @@
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
     font-size:x-large;
-    color: rgb(5, 103, 60);
+    color: rgb(4, 77, 46);
     font-family:Arial, Helvetica, sans-serif;
     font-weight: 600;
 }
@@ -119,15 +119,40 @@ label{
 
 }
  #form-obtener-paqTuris{
-    background-color: rgb(165, 184, 165);  
+    background-color: rgb(165, 184, 165);
+    padding-left: 100px;  
  }
  #datos2{
     color:#ffffff;
+    font-size: large;
+    font: 1em sans-serif;
  }
 #form-guardar-cambios{
     background-color: rgb(165, 184, 165); 
 }
 #tablaDestinos{
-    background-color:rgb(165, 184, 165); 
+    background-color:rgb(245, 250, 245); 
 }
- 
+ #destinos-table{
+    border-spacing: 10px;
+ }
+ td, th {
+    padding: 16px; 
+    margin: 5px;
+  }
+  
+  .footer-bottom{
+
+  margin-top: 0.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.3rem;
+  padding: 16px;
+
+  }
+    
+  label {
+    display: inline-block;
+    width: 100px; /* Ajusta el ancho según sea necesario */
+    text-align: left; /* Alinea el texto a la izquierda */
+    margin-right: 10px; /* Espacio entre el label y el input */
+  }

@@ -23,28 +23,27 @@
     </header>
 
     <div class="content"><!--contenedor del espacio del header--></div>
-
-
-
     <br>
-    <h1>Eliminar Paquetes Turísticos</h1><br>
-
-    <table id="destinos-table"> <!-- Se crea una tabla para mostrar los paquetes. -->
+    <br>
+    <h1>Eliminar Paquetes Turísticos</h1>
+    <br>
+    <br>
+    <table cellpadding="30" id="destinos-table"> <!-- Se crea una tabla para mostrar los paquetes. -->
         <thead>
             <!--Encabezado de la tabla destinos con columnas para código, descripción, cantidad, precio, estadia y fecha.-->
             <tr id="datos2">
                 <th>Código</th>
                 <th>Descripción</th>
                 <th>Cantidad</th>
-                <th align="right">Precio</th>
-                <th> Acciones</th>
-
-
+                <th>Estadía </th>
+                <th>Fecha</th>
+                <th>Precio </th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table><br>
+    <br>
 
     <div class="contenedor-centrado">
         <a href="index.html">Menú principal</a>
@@ -112,7 +111,8 @@
         // Cuando la página se carga, llama a obtenerDestinos para cargar la lista de paquetes turísticos.
         document.addEventListener('DOMContentLoaded', obtenerDestinos);
     </script>
-
+    <br>
+    <br>
 
     <footer>
         <div class="footer-bottom">
