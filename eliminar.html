@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-   
+
     <title>Proyecto Final - CatorceViajes CRUD </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./static/css/index.css">
     <link rel="icon" href="/static/imagenes/logonuevo_1.jpeg" type="image/png">
     <link rel="icon" href="/static/imagenes/logonuevo_1.jpeg" type="image/png">
-    
+
 </head>
 
 
@@ -21,23 +21,24 @@
         </div>
         <a href="index.html"> Menú principal</a>
     </header>
-       
+
     <div class="content"><!--contenedor del espacio del header--></div>
-               
 
 
-<br>
-<h1>Eliminar Paquetes Turísticos</h1><br>
+
+    <br>
+    <h1>Eliminar Paquetes Turísticos</h1><br>
 
     <table id="destinos-table"> <!-- Se crea una tabla para mostrar los paquetes. -->
-        <thead> <!--Encabezado de la tabla destinos con columnas para código, descripción, cantidad, precio, estadia y fecha.-->
+        <thead>
+            <!--Encabezado de la tabla destinos con columnas para código, descripción, cantidad, precio, estadia y fecha.-->
             <tr id="datos2">
                 <th>Código</th>
                 <th>Descripción</th>
                 <th>Cantidad</th>
                 <th align="right">Precio</th>
                 <th> Acciones</th>
-                
+
 
             </tr>
         </thead>
@@ -54,7 +55,7 @@
 
         //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
         //const URL = "https://USUARIO.pythonanywhere.com/"
-        
+
         // Obtiene el contenido del inventario
         function obtenerDestinos() {
             fetch(URL + 'destinos') // Realiza una solicitud GET al servidor para obtener la lista de paquetes.
@@ -64,14 +65,14 @@
                 })
                 // Asigna los datos de los paquetes obtenidos a la propiedad paquetes del estado.
                 .then(data => {
-                    const destinosTable =                   
-        document.getElementById('destinos-table').getElementsByTagName('tbody')[0];
+                    const destinosTable =
+                        document.getElementById('destinos-table').getElementsByTagName('tbody')[0];
                     destinosTable.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
                     data.forEach(paqTuris => {
                         const row = destinosTable.insertRow();
                         row.innerHTML = `
                             <td>${paqTuris.codigo}</td>
-                            <td>${paqturis.descripcion}</td>
+                            <td>${paqTuris.descripcion}</td>
                             <td>${paqTuris.cantidad}</td>
                             <td>${paqTuris.estadia}</td>
                             <td>${paqTuris.fecha}</td>
@@ -90,7 +91,7 @@
         }
 
         // Se utiliza para eliminar un producto.
-        function eliminarPaqturis(codigo) {
+        function eliminarPaqTuris(codigo) {
             // Se muestra un diálogo de confirmación. Si el usuario confirma, se realiza una solicitud DELETE al servidor a través de fetch(URL + 'productos/${codigo}', {method: 'DELETE' }).
             if (confirm('¿Estás seguro de que quieres eliminar este paquete?')) {
                 fetch(URL + `destinos/${codigo}`, { method: 'DELETE' })
@@ -119,7 +120,7 @@
             <p>Diseño web desarrollado por GRUPO14FS.</p>
         </div>
     </footer>
-    
+
     <script src="./js/toggle-menu.js"></script>
 
 </body>

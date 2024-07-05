@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-#ETAPA 4 PARTE II: DESARROLLAR UNA API PARA NUESTRO CRUD
-#Instalar con pip install : Flask, flask-cors, mysql-connector-python, Werkseug
-=======
 #--------------------------------------------------------------------
 # Instalar con pip install Flask
->>>>>>> a1a0689158f8446d45f03e817254a2611df447e5
 from flask import Flask, request, jsonify, render_template
 from flask import request
 
@@ -40,48 +35,6 @@ class Catalogo:
         )
         self.cursor = self.conn.cursor()
 
-<<<<<<< HEAD
-# Primero, establecemos una conexión sin especificar la base de  datos
-   self.conn = mysql.connector.connect(
-      host=host,
-      user=user,
-      password=password
-    )
-   self.cursor = self.conn.cursor()
-# Intentamos seleccionar la base de datos
-   try:  
-       self.cursor.execute(f"USE {database}")
-   except mysql.connector.Error as err:
-# Si la base de datos no existe, la creamos
-    if err.errno == mysql.connector.errorcode.ER_BAD_DB_ERROR:
-        self.cursor.execute(f"CREATE DATABASE {database}")
-        self.conn.database = database
-    else:
-        raise err
-
-# Una vez que la base de datos está establecida, creamos la tabla si no existe
-   self.cursor.execute('''
-        CREATE TABLE IF NOT EXISTS destinos (
-           codigo INT AUTO_INCREMENT PRIMARY KEY,
-           descripcion VARCHAR(255) NOT NULL,
-           cantidad INT NOT NULL,
-           precio DECIMAL(10, 2) NOT NULL,
-           imagen_url VARCHAR(255),
-           estadia VARCHAR(255),
-           fecha VARCHAR(255))''')
-   self.conn.commit()
-# Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
-   self.cursor.close()
-   self.cursor = self.conn.cursor(dictionary=True)
-
-#-----------------------------------------------------------------------------------------------
- def agregarPaqTuris(self, descripcion, cantidad, precio, imagen, estadia, fecha):
-               
-        sql = "INSERT INTO destinos (descripcion, cantidad, precio, imagen_url, estadia, fecha) VALUES (%s, %s, %s, %s, %s, %s)"
-        valores = (descripcion, cantidad, precio, imagen, estadia, fecha)
-
-        self.cursor.execute(sql, valores)        
-=======
         # Intentamos seleccionar la base de datos
         try:
             self.cursor.execute(f"USE {database}")
@@ -102,7 +55,6 @@ class Catalogo:
             imagen_url VARCHAR(255), 
             estadia VARCHAR (255),
             fecha VARCHAR (255))''')
->>>>>>> a1a0689158f8446d45f03e817254a2611df447e5
         self.conn.commit()
 
         # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
@@ -125,13 +77,8 @@ class Catalogo:
     #base de datos para la fila recién insertada.
 
     #----------------------------------------------------------------
-<<<<<<< HEAD
- def consultarPaqTuris(self, codigo):
-        # Consultamos un paquete turístico a partir de su código, destinos es la tabla de la base de datos(turismo)
-=======
     # Consultamos un paquete t. a partir de su código.
     def consultarPaqTuris(self, codigo):
->>>>>>> a1a0689158f8446d45f03e817254a2611df447e5
         self.cursor.execute(f"SELECT * FROM destinos WHERE codigo = {codigo}")
         return self.cursor.fetchone() # devuelve un solo registro
 
@@ -183,11 +130,7 @@ class Catalogo:
 # Programa Principal
 #--------------------------------------------------------------------
 # Crear una instancia de la clase Catalogo
-<<<<<<< HEAD
-catalogo = Catalogo(host='localhost', user='root', password='root', database='viajes')
-=======
 catalogo = Catalogo(host='localhost', user='root', password='', database='miapp')
->>>>>>> a1a0689158f8446d45f03e817254a2611df447e5
 #catalogo = Catalogo(host='USUARIO.mysql.pythonanywhere-services.com', user='USUARIO', password='CLAVE', database='USUARIO$miapp')
 
 
@@ -320,7 +263,7 @@ def modificarPaqTuris(codigo):
 #La función eliminarPaqTuris se asocia con esta URL y es llamada cuando se realiza una solicitud DELETE a /destinos/ seguido de un número (el código del paquete).
 def eliminarPaqTuris(codigo):
     # Busco el paquete en la base de datos
-    destino = catalogo.eliminarPaqTuris(codigo)
+    destino = catalogo.consultarPaqTuris(codigo)
     if destino: # Si el paquete existe, verifica si hay una imagen asociada en el servidor.
         imagen_vieja = destino["imagen_url"]
         # Armo la ruta a la imagen
@@ -343,7 +286,6 @@ def eliminarPaqTuris(codigo):
 
 #--------------------------------------------------------------------
 if __name__ == "__main__":
-<<<<<<< HEAD
     app.run(debug=True)
 
 
@@ -370,6 +312,3 @@ if __name__ == "__main__":
 
 
 
-=======
-    app.run(debug=True)
->>>>>>> a1a0689158f8446d45f03e817254a2611df447e5
