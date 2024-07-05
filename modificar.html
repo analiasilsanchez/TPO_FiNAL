@@ -165,12 +165,11 @@
             event.preventDefault();
 
             const formData = new FormData();
-            formData.append('codigo', codigo);
-            formData.append('descripcion', document.getElementById('descripcionModificar').value);
-            formData.append('cantidad', document.getElementById('cantidadModificar').value);
-            formData.append('estadia', document.getElementById('estadiaModificar').value);
-            formData.append('precio', document.getElementById('precioModificar').value);
-            formData.append('fecha', document.getElementById('fechaModificar').value);
+            formData.append('nuevaDescripcion', document.getElementById('descripcionModificar').value);
+            formData.append('nuevaCantidad', document.getElementById('cantidadModificar').value);
+            formData.append('nuevoPrecio', document.getElementById('precioModificar').value);
+            formData.append('nuevaEstadia', document.getElementById('estadiaModificar').value);
+            formData.append('nuevaFecha', document.getElementById('fechaModificar').value);
 
             // Si se ha seleccionado una imagen nueva, la añade al formData. 
             if (imagenSeleccionada) {
