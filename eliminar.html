@@ -82,16 +82,16 @@
                         `;
                     });
                 })
-                // Captura y maneja errores, mostrando una alerta en caso de error al obtener los productos.
+                // Captura y maneja errores, mostrando una alerta en caso de error al obtener los paquetes de viaje.
                 .catch(error => {
                     console.log('Error:', error);
                     alert('Error al obtener los destinos/paquetes.');
                 });
         }
 
-        // Se utiliza para eliminar un producto.
+        // Se utiliza para eliminar un paquete.
         function eliminarPaqTuris(codigo) {
-            // Se muestra un diálogo de confirmación. Si el usuario confirma, se realiza una solicitud DELETE al servidor a través de fetch(URL + 'productos/${codigo}', {method: 'DELETE' }).
+            // Se muestra un diálogo de confirmación. Si el usuario confirma, se realiza una solicitud DELETE al servidor a través de fetch(URL + 'destinos/${codigo}', {method: 'DELETE' }).
             if (confirm('¿Estás seguro de que quieres eliminar este paquete?')) {
                 fetch(URL + `destinos/${codigo}`, { method: 'DELETE' })
                     .then(response => {

@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-   
+
     <title>Proyecto Final - CRUD Viajes</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./static/css/index.css">
     <link rel="icon" href="/static/imagenes/logonuevo_1.jpeg" type="image/png">
     <link rel="icon" href="/static/imagenes/logonuevo_1.jpeg" type="image/png">
-    
+
 </head>
 
 
@@ -21,30 +21,31 @@
         </div>
         <a href="index.html">Menú principal</a>
     </header>
-       
-    <div class="content"><!--contenedor del espacio del header--></div>            
-<br>
-<br>
-<h1>Listado de Paquetes Turísticos</h1><br>
-<br>
+
+    <div class="content"><!--contenedor del espacio del header--></div>
+    <br>
+    <br>
+    <h1>Listado de Paquetes Turísticos</h1><br>
+    <br>
     <table> <!-- Se crea una tabla para mostrar los paquetes. -->
-        <thead> <!--Encabezado de la tabla con columnas para código, descripción, cantidad, precio, imagen, estadia y precio.-->
+        <thead>
+            <!--Encabezado de la tabla con columnas para código, descripción, cantidad, precio, imagen, estadia y precio.-->
             <tr id="datos">
-                <th>Código</th> 
+                <th>Código</th>
                 <th>Descripción</th>
-                <th>Cantidad</th>                
+                <th>Cantidad</th>
                 <th>Precio</th>
                 <th>Estadía</th>
                 <th>Imagen</th>
                 <th>Fecha</th>
-                
+
             </tr>
         </thead>
         <tbody id="tablaDestinos"> </tbody>
     </table><br>
     <br>
     <br>
-    
+
     <div class="contenedor-centrado">
         <a href="index.html">Menú principal</a>
     </div>
@@ -54,15 +55,15 @@
 
         // Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
         //const URL = "https://USUARIO.pythonanywhere.com/"
-        
+
 
         // Realizamos la solicitud GET al servidor para obtener todos los destinos.
         fetch(URL + 'destinos')
             .then(function (response) {
                 if (response.ok) {
                     //Si la respuesta es exitosa (response.ok), convierte el cuerpo de la respuesta de formato JSON a un objeto JavaScript y pasa estos datos a la siguiente promesa then.
-                    return response.json(); 
-            } else {
+                    return response.json();
+                } else {
                     // Si hubo un error, lanzar explícitamente una excepción para ser "catcheada" más adelante
                     throw new Error('Error al obtener los destinos.');
                 }
@@ -81,12 +82,12 @@
                         '<td align="right">' + paqTuris.precio + '</td>' +
                         '<td align="right">' + paqTuris.estadia + '</td>' +
                         // Mostrar miniatura de la imagen
-                        '<td><img src=./static/imagenes/' + paqTuris.imagen_url +' alt="Img del paq." style="width: 80px;"></td>' +
+                        '<td><img src=./static/imagenes/' + paqTuris.imagen_url + ' alt="Img del paq." style="width: 80px;"></td>' +
                         '<td align="right">' + paqTuris.fecha + '</td>';
-                        
-                        //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-                        //'<td><img src=https://www.pythonanywhere.com/user/USUARIO/files/home/USUARIO/mysite/static/imagenes/' + producto.imagen_url +' alt="Imagen del producto" style="width: 100px;"></td>' + '<td align="right">' + producto.proveedor + '</td>';
-                    
+
+                    //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
+                    //'<td><img src=https://www.pythonanywhere.com/user/USUARIO/files/home/USUARIO/mysite/static/imagenes/' + paqTuris.imagen_url +' alt="Imagen del paquete de viajes" style="width: 80px;"></td>' + '<td align="right">' + paqTuris.fecha + '</td>';
+
                     //Una vez que se crea la fila con el contenido del paquete, se agrega a la tabla utilizando el método appendChild del elemento tablaDestinos.
                     tablaDestinos.appendChild(fila);
                 }
@@ -106,7 +107,7 @@
             <p>Diseño web desarrollado por GRUPO14FS.</p>
         </div>
     </footer>
-    
+
     <script src="./js/toggle-menu.js"></script>
 
 </body>

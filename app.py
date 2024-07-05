@@ -130,7 +130,7 @@ class Catalogo:
 # Programa Principal
 #--------------------------------------------------------------------
 # Crear una instancia de la clase Catalogo
-catalogo = Catalogo(host='localhost', user='root', password='root', database='miapp')
+catalogo = Catalogo(host='localhost', user='root', password='', database='miapp')
 #catalogo = Catalogo(host='USUARIO.mysql.pythonanywhere-services.com', user='USUARIO', password='CLAVE', database='USUARIO$miapp')
 
 
